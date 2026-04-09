@@ -1,0 +1,30 @@
+from collections import deque
+jugA=4
+jugB=3
+goal=2
+def water_jug_problem():
+    visited=set()
+    queue=deque()
+    queue.append((0,0))
+    while queue:
+        a,b=queue.popleft()
+        if (a,b) in visited:
+            continue
+        visited.add((a,b))
+    print(f"jugA={a},jug={b}")
+    if a==goal or b==goal:
+        print("Goal is Reached")
+    return
+states=[
+    (jugA,b),
+    (a,jugB),
+    (0,b),
+    (a,0),
+    (a-min(a,jugB-b),b+min(a,jugB-b)),
+    (a+min(b,jugA-a),b-min(b,jugA-a))
+    ]
+    for state in states:
+        if state not in visited:
+            queue.append(state)
+water_jug_problem()
+    
